@@ -10,7 +10,7 @@ import axios from "axios";
 //   import.meta.url
 // ).toString();
 
-// const GEMINI_API_KEY = "AIzaSyBChAK_4ODI1fv5eosNcN74RUiTadU9EEc"; // 🔴 Replace with your API key
+// const GEMINI_API_KEY = ""
 
 const JobDetailsPage = () => {
   const { id } = useParams();
