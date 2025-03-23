@@ -4,45 +4,35 @@ import { motion, useInView } from "framer-motion"; // Import framer-motion for a
 
 const services = [
   {
-    icon: "🛠️",
-    title: "Managed Services",
-    info: "Free up your internal resources to focus on the business by letting us handle day to day support services, management, and monitoring of your IT.",
+    icon: "🌟", // You can replace this with an icon component like React Icons
+    title: "AI-Powered Interviews",
+    info: "Conduct interviews with the help of AI to ensure unbiased and efficient hiring processes."
   },
   {
-    icon: "🌐",
-    title: "Web Development",
-    info: "Our web development services can help you establish an impactful online presence and reach your target audience effectively.",
+    icon: "📊", // You can replace this with an icon component like React Icons
+    title: "Analytics & Insights",
+    info: "Get detailed analytics and insights into candidate performance to make informed decisions."
   },
   {
-    icon: "🖼️",
-    title: "NFT Development",
-    info: "Non Fungible Tokens are in Trend. We’ve been building them since 2016.",
+    icon: "🤖", // You can replace this with an icon component like React Icons
+    title: "Automated Scheduling",
+    info: "Automate interview scheduling to save time and streamline the hiring process."
   },
   {
-    icon: "💼",
-    title: "IT Consulting & Advisory",
-    info: "The right technology, implemented properly, appropriately managed and monitored, can lead to significant gains in growth.",
+    icon: "🔒", // You can replace this with an icon component like React Icons
+    title: "Secure & Reliable",
+    info: "Our platform ensures data security and reliability for all your hiring needs."
   },
   {
-    icon: "📱",
-    title: "Mobile Development",
-    info: "We can help you create a customized mobile app that aligns with your brand and goals, with expertise in various mobile platforms.",
+    icon: "📝", // You can replace this with an icon component like React Icons
+    title: "Customizable Assessments",
+    info: "Create and customize assessments tailored to your company's requirements."
   },
   {
-    icon: "💻",
-    title: "Software Development",
-    info: "From a custom CBM to Transportation Management System, we’ve built it all.",
-  },
-  {
-    icon: "🔒",
-    title: "Cyber Security",
-    info: "Our experts can identify vulnerabilities, assess risks, and implement robust security measures to safeguard your systems and data.",
-  },
-  {
-    icon: "☁️",
-    title: "Cloud Services",
-    info: "With our expertise in cloud technologies, we can help you find the right cloud solutions that meet your business needs and goals.",
-  },
+    icon: "📞", // You can replace this with an icon component like React Icons
+    title: "24/7 Support",
+    info: "Our support team is available round the clock to assist you with any queries."
+  }
 ];
 
 const About = () => {
@@ -53,10 +43,10 @@ const About = () => {
     // Initialize Typed.js
     const typed = new Typed(typedRef.current, {
       strings: [
-        "Cost-effectiveness",
-        "Innovative Technology",
-        "Industry Expertise",
-        "Scalability",
+        "Industry Experts",
+        "AI-Powered Recruitment",
+        "Smarter Hiring",
+        "Data-Driven Decisions",
       ],
       typeSpeed: 50,
       backSpeed: 30,
@@ -82,24 +72,22 @@ const About = () => {
   return (
     <>
       {/* Typed Section */}
-      <div className="max-w-4xl mb-10 mt-10 pt-40 sm:pt-40 px-10 xl:mx-25 relative z-10">
+      <div className="max-w-4xl mb-10 mt-10 pt-20 sm:pt-70 px-10 xl:mx-25 relative z-10">
         <h1 className="text-4xl font-bold text-gray-900">
           <span className="text-gray-900">
-            Simplifying IT for a complex world.
+            Simplifying Hiring for a Complex World
           </span>
           <br />
           We believe in <span className="text-[#d40000]" ref={typedRef}></span>
         </h1>
 
         <p className="text-gray-600 text-lg mt-4">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-          voluptatibus quam modi et qui explicabo, provident officia! Eveniet
-          tempore eligendi dolore nesciunt! Quia, debitis?
+          At Hire360.ai, we are revolutionizing the recruitment landscape with cutting-edge AI. Our platform streamlines hiring by integrating AI-driven interviews, multi-modal candidate assessments, and intelligent scoring systems to ensure recruiters find the best talent efficiently.
         </p>
       </div>
 
       {/* Services Section */}
-      <section className="bg-gray-50 min-h-screen flex flex-col items-center justify-center px-10 py-20 relative z-10">
+      <section className="bg-white min-h-screen flex flex-col items-center justify-center px-10 py-20 relative z-10">
         <div className="w-full max-w-7xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (

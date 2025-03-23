@@ -23,18 +23,18 @@ const Hero = () => {
   return (
     <>
       {/* Background Image */}
-      <div className="absolute inset-0 flex justify-center items-center">
-        <img
-          className="w-screen h-screen object-cover"
-          src={hero}
-          alt="AI Interview"
-        />
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+  <img
+    className="w-full h-full object-contain"
+    src={hero}
+    alt="AI Interview"
+  />
         <div className="absolute inset-0 bg-indigo-900/60"></div>{" "}
         {/* Dark Overlay */}
       </div>
 
       {/* Navbar */}
-      <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-50 shadow-md">
+      <nav className="bg-white border-gray-200 white fixed top-0 left-0 w-full z-50 shadow-md">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           {/* Logo */}
           <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -132,8 +132,8 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          <h4 className="text-sm font-semibold text-white xl:text-xl">
-            We manage your IT,
+          <h4 className="text-sm font-semibold text-balck xl:text-xl">
+            We manage your interviews,
           </h4>
           <h4 className="text-sm font-semibold text-white xl:text-xl">
             so you can manage your business.
@@ -142,99 +142,19 @@ const Hero = () => {
             We are
           </h1>
           <h1 className="2xl:text-8xl md:text-6xl sm:text-4xl text-3xl font-semibold font-serif">
-            Intelion
+            Hire360.ai
           </h1>
 
           <p className="lg:w-[70%] w-full text-white text-md mt-4 md:text-lg 2xl:text-2xl">
-            Take charge of your business continuity with innovative IT solutions
+            Take charge of your interviews with the assistance of AI
           </p>
 
-          <div>
-            <button className="bg-[#d40000] mt-5 px-4 py-2 rounded-md text-white text-sm font-medium hover:bg-[#b00000] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#d40000]">
-              Schedule a Free Consultation
-            </button>
-          </div>
-          <div className="flex items-center space-x-3 xl:mt-5 sm:mt-10">
-            {/* Text & Stars Section */}
-            <div className="flex flex-col">
-              <span className="text-white text-xs font-semibold uppercase">
-                Reviewed on
-              </span>
-              <div className="flex items-center space-x-1">
-                {[...Array(5)].map((_, index) => (
-                  <FaStar key={index} className="text-[#d40000] text-sm" />
-                ))}
-              </div>
-            </div>
-
-            {/* Clutch & Review Count Section */}
-            <div>
-              <span className="text-3xl font-bold text-black">Clutch</span>
-              <p className="text-white text-sm font-medium">2K+ REVIEWS</p>
-            </div>
-          </div>
+          
         </motion.div>
 
         {/* Right Content with Animation */}
-        <motion.div
-          className="w-full flex sm:flex-col justify-center mt-10 sm:mt-0 sm:gap-8 gap-2 bg-gray-700/60 sm:bg-transparent p-4 rounded-lg z-10"
-          variants={rightVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="flex flex-col sm:items-end items-center">
-            <div className="inline-flex gap-1 items-center">
-              <h2 className="xl:text-6xl md:text-4xl sm:text-2xl text-xl font-semibold">
-                08{" "}
-              </h2>
-              <h2 className=" text-rose-500 xl:mt-3 xl:text-4xl md:text-3xl sm:text-2xl text-xl font-extrabold">
-                Years
-              </h2>
-            </div>
-            <h4 className="text-sm sm:text-md xl:text-2xl text-center">
-              Proven Track Record
-            </h4>
-          </div>
-          <div className="flex flex-col sm:items-end items-center">
-            <div className="inline-flex gap-1 items-center">
-              <h2 className="xl:text-6xl md:text-4xl sm:text-2xl text-xl font-semibold">
-                98
-              </h2>
-              <h2 className="text-rose-500 xl:mt-3 xl:text-4xl md:text-3xl sm:text-2xl text-xl font-extrabold">
-                %
-              </h2>
-            </div>
-            <h4 className="text-sm sm:text-md xl:text-2xl text-center">
-              Customer Satisfaction
-            </h4>
-          </div>
-          <div className="flex flex-col sm:items-end items-center">
-            <div className="inline-flex gap-1 items-center">
-              <h2 className="xl:text-6xl md:text-4xl sm:text-2xl text-xl font-semibold">
-                470
-              </h2>
-              <h2 className="text-rose-500 xl:mt-3 xl:text-4xl md:text-3xl sm:text-2xl text-xl font-extrabold">
-                +Projects
-              </h2>
-            </div>
-            <h4 className="text-sm sm:text-md xl:text-2xl text-center">
-              We Have Completed
-            </h4>
-          </div>
-          <div className="flex flex-col sm:items-end items-center">
-            <div className="inline-flex gap-1 items-center">
-              <h2 className="xl:text-6xl md:text-4xl sm:text-2xl text-xl font-semibold">
-                3
-              </h2>
-              <h2 className="text-rose-500 xl:mt-3 xl:text-4xl md:text-3xl sm:text-2xl text-xl font-extrabold">
-                Mins
-              </h2>
-            </div>
-            <h4 className="text-sm sm:text-md xl:text-2xl text-center">
-              Average Answer Time
-            </h4>
-          </div>
-        </motion.div>
+        
+
       </div>
     </>
   );
