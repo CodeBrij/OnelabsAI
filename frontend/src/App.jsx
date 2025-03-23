@@ -5,7 +5,7 @@ import LandingPage from './pages/LandingPage';
 import SignUpPage from './pages/Signup';
 import LoginPage from './pages/Login';
 import RecruiterPage from './pages/RecruiterPage';
-import JobDetailsPage from './pages/JobDetail';
+import ApplicantsPage from './pages/Applicant';
 import JobListingsPage from './pages/JobListings';
 function App() {
 
@@ -31,7 +31,7 @@ function App() {
         />
         <Route
           path="/applicants"
-          element={<JobDetailsPage />}
+          element={<ApplicantsPage />}
         />
         <Route
           path="/joblistings"

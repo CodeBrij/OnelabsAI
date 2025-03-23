@@ -1,15 +1,66 @@
-import { useState } from "react";
-
-const jobs = [
-  { id: 1, company: "Google", title: "Software Engineer", location: "Bangalore", description: "Develop scalable applications.", skills: "JavaScript, React, Node.js", salary: "₹25 LPA" },
-  { id: 2, company: "Amazon", title: "Data Analyst", location: "Mumbai", description: "Analyze business data.", skills: "SQL, Python, Excel", salary: "₹18 LPA" },
-  { id: 3, company: "Microsoft", title: "Cloud Engineer", location: "Hyderabad", description: "Manage cloud infrastructure.", skills: "Azure, Docker, Kubernetes", salary: "₹22 LPA" },
-];
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 const JobListingsPage = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [uploadedResume, setUploadedResume] = useState(null);
+  const [jobs,setJobs] = useState([]);
+  const [resume, setResume] = useState()
+
+  useEffect(() => {
+      getJobs();
+    }, []);
+
+  const getJobs = async () => {
+    try {
+      const response = await fetch("http://localhost:5001/joblisting");
+      if(!response.ok){
+        toast.error("Failed to fetch Jobs");
+      }
+      const data = await response.json();
+      setJobs(data);
+    } catch (error) {
+      console.error("Error fetching the jobs: "+ error);
+    }
+  }
+
+  const handleInterview = async () => {
+    try {
+      let jobId = selectedJob._id;
+      let name = localStorage.getItem("user.name");
+      let userId = localStorage.getItem("user._id");
+      let email = localStorage.getItem("user.email");
+
+      if (!uploadedResume) {
+        console.error("No file selected");
+        return;
+      }
+    
+      const formData = new FormData();
+      formData.append("file", uploadedResume);
+    
+      try {
+        const response = await fetch("https://api.cloudinary.com/v1_1/drdniiyif/upload", {
+          method: "POST",
+          body: formData,
+        });
+    
+        const data = await response.json();
+        setUploadedResume(data.secure_url); // Assuming you have a state variable for storing the URL
+      } catch (error) {
+        console.error("Upload failed:", error);
+      }
+
+      console.log("Cloudinary upload response: ", uploadResponse);
+    } catch (error) {
+      
+    }
+  }
+
+  const uploadToCloudinary = async () => {
+    
+  };
 
   return (
     <div className="flex h-screen">
@@ -18,11 +69,11 @@ const JobListingsPage = () => {
         <h2 className="text-xl font-bold mb-4">Job Listings</h2>
         {jobs.map((job) => (
           <div
-            key={job.id}
-            className={`p-3 rounded cursor-pointer ${selectedJob?.id === job.id ? "bg-amber-200" : ""}`}
+            key={job._id}
+            className={`p-3 rounded cursor-pointer ${selectedJob?._id === job._id ? "bg-amber-200" : ""}`}
             onClick={() => setSelectedJob(job)}
           >
-            <h3 className="font-bold">{job.company}</h3>
+            <h3 className="font-bold">{job.name}</h3>
             <p>{job.title}</p>
             <p className="text-sm text-gray-500">{job.location}</p>
           </div>
@@ -34,7 +85,7 @@ const JobListingsPage = () => {
         {selectedJob ? (
           <>
             <h1 className="text-2xl font-bold">{selectedJob.title}</h1>
-            <h2 className="text-lg text-gray-600">{selectedJob.company}</h2>
+            <h2 className="text-lg text-gray-600">{selectedJob.name}</h2>
             <p className="mt-2 text-gray-500">Location: {selectedJob.location}</p>
             <p className="mt-2">{selectedJob.description}</p>
             <p className="mt-2"><strong>Required Skills:</strong> {selectedJob.skills}</p>
@@ -69,7 +120,7 @@ const JobListingsPage = () => {
                 Cancel
               </button>
               {uploadedResume && (
-                <button className="btn btn-primary">Start Interview</button>
+                <button className="btn btn-primary" onClick={handleInterview}>Start Interview</button>
               )}
             </div>
           </div>

@@ -1,20 +1,25 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const RecruiterPage = () => {
   const [jobs, setJobs] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({ title: "", description: "", skills: "", salary: "", location: "" });
+  const [formData, setFormData] = useState({name: "", title: "", description: "", skills: "", salary: "", location: "", tags: [] });
   const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
-    fetch("/api/jobs")
-      .then((res) => res.json())
-      .then((data) => setJobs(data));
+    getJobs();
   }, []);
 
-  const handlePostJob = () => {
-    fetch("/api/jobs", {
+  const getJobs = () => {
+    fetch(`http://localhost:5001/joblisting`)
+      .then((res) => res.json())
+      .then((data) => setJobs(data));
+  }
+
+  const handlePostJob = async () => {
+    await fetch(`http://localhost:5001/jobs`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -46,8 +51,8 @@ const RecruiterPage = () => {
                 type="text"
                 placeholder="Company Name"
                 className="input input-bordered w-full"
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
               <input
                 type="text"
@@ -83,6 +88,13 @@ const RecruiterPage = () => {
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
               />
+              <input
+                type="text"
+                placeholder="Tags"
+                className="input input-bordered w-full"
+                value={formData.tags}
+                onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
+              />
             </div>
 
             <div className="modal-action">
@@ -99,12 +111,13 @@ const RecruiterPage = () => {
 
       {/* Posted Jobs List */}
       <h2 className="text-2xl font-semibold mt-8 mb-4 mx-15">Posted Jobs</h2>
-      <div className="space-y-4 mx-15">
+      <div className="space-y-4 mx-15 flex gap-5">
         {jobs.map((job) => (
-          <div key={job.id} className="card bg-gray-800 p-4 shadow-md">
+          <div key={job.id} className="card p-1 shadow-md border w-[50%]">
             <div className="card-body">
               <h2 className="card-title">{job.title}</h2>
-              <p className="text-gray-400">{job.location} | {job.salary}</p>
+              <p className="text-gray-600">Location: {job.location} | Skills: {job.skills}</p>
+              <p className="text-gray-600">Salary: {job.salary}</p>
               <button className="btn btn-info bg-rose-400" onClick={() => navigate(`/job/${job.id}`)}>
                 View Applicants
               </button>

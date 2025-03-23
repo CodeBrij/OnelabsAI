@@ -2,18 +2,40 @@ import { useState } from "react";
 import AuthImagePattern from "../components/AuthImagePattern";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+
+  const login = async(formData) => {
+    let user = await fetch("http://localhost:5001/login", {
+      method:"post",
+      body:JSON.stringify(formData),
+      headers:{
+          "Content-Type":"application/json"
+      }
+  })
+    user = await user.json();
+    console.log(user);
+  
+  if(user){
+      localStorage.setItem("user", JSON.stringify(user.user));
+      localStorage.setItem("token", JSON.stringify(user.auth));
+      navigate("/joblistings");
+  } else{
+      alert("Enter correct details");
+  }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(formData);
   };
+
 
   return (
     <div data-theme="caramellatte" className="h-screen grid lg:grid-cols-2">
